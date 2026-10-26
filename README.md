@@ -69,16 +69,6 @@ Textos en latín, la nota en alemán, el idioma alienígena, los textos corrupto
 
 ---
 
-## 🐛 ¿Has visto algo raro?
-
-El archivo de idioma solo trae los textos, sin indicar en qué pantalla sale cada uno. Por eso alguna palabra inglesa con doble sentido puede haber caído en el significado equivocado (*drive* = disco / conducir, *stop*, *tile*…). Ya se han separado por contexto las que se han detectado, pero puede quedar alguna.
-
-Abre un **issue** con:
-- 📸 una **captura** donde se vea el texto,
-- qué pone y qué debería poner.
-
----
-
 ## 🛠️ Para desarrolladores
 
 ### Estructura

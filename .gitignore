@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# Archivos originales del juego: no se suben
+en/
+*.locres.bak
+pendientes.json
+dist/avisos.txt

@@ -2,12 +2,13 @@
 
 # 📡 Voices of the Void — Traducción al castellano
 
-**Traducción completa al castellano de España de _Voices of the Void_**
+**Voices of the Void, por fin entero en castellano de España**
 Menús, ajustes, tienda, objetos, correos del Dr. Bao, notas, tutorial y ayuda.
 
 ![Versión del juego](https://img.shields.io/badge/VotV-Alpha%200.9.0n-8b0000?style=flat-square)
 ![Idioma](https://img.shields.io/badge/idioma-castellano%20(España)-c60b1e?style=flat-square)
 ![Textos](https://img.shields.io/badge/textos-19.263%20claves-2b7a0b?style=flat-square)
+![Hecho con Claude](https://img.shields.io/badge/traducido%20con-Claude-d97757?style=flat-square)
 ![Licencia](https://img.shields.io/badge/herramientas-MIT-blue?style=flat-square)
 
 </div>
@@ -16,24 +17,34 @@ Menús, ajustes, tienda, objetos, correos del Dr. Bao, notas, tutorial y ayuda.
 
 ## ✨ Qué es esto
 
-_Voices of the Void_ trae una opción de español, pero apenas cubre unas 350 frases, en español latino y con fallos. Todo lo demás sale en inglés, menú principal incluido.
+*Voices of the Void* trae una opción de español, pero solo cubre unas 350 frases, está en español latino y tiene algunos fallos. Todo lo demás sale en inglés, menú principal incluido. Si te gusta el juego pero prefieres jugarlo en tu idioma, este mod es para ti.
 
-Este mod sustituye ese archivo de idioma por una **traducción completa al castellano de España**:
+Sustituye ese archivo de idioma por una **traducción completa al castellano de España**, pensada para que se lea natural y no a trompicones:
 
 | | |
 |---|---|
 | 🗂️ **Textos del juego** | 19.263 claves (5.807 frases distintas) |
 | 🇪🇸 **Variante** | Castellano de España: *patata*, *gambas*, *ordenador*, *pulsa*… |
-| 🧑‍🔬 **Tono** | Interfaz clara, Bao burocrático y borde, notas inquietantes, humor intacto |
-| 🛡️ **Seguridad** | Todas las variables `{a}`, etiquetas de color, iconos y comandos de terminal comprobados automáticamente |
+| 🧑‍🔬 **Tono** | Interfaz clara, Bao burocrático y borde, notas inquietantes y el humor de siempre |
+| 🛡️ **Seguridad** | Todas las variables `{a}`, etiquetas de color, iconos y comandos de terminal se comprueban automáticamente para que nada se rompa |
 | ♻️ **Reversible** | Es un único archivo `.pak`: lo borras y el juego vuelve a estar como antes |
+
+---
+
+## 🤖 Hecho con Claude
+
+Para que quede claro desde el principio: **la traducción se ha hecho con [Claude](https://claude.ai)**, la IA de Anthropic, con un glosario y unos criterios de estilo definidos de antemano y un script que valida cada texto antes de meterlo en el juego.
+
+Es una traducción de fans y no es perfecta. Puede que encuentres alguna frase rara, un chiste que no acaba de cuadrar o un término que habrías traducido de otra forma. Si te pasa, abre una *issue* o propón el cambio en `traduccion/es.json`: se corrige en un momento.
 
 ---
 
 ## 📥 Instalación
 
-1. Descarga **[`VotV-WindowsNoEditor_ES_P.pak`](dist/VotV-WindowsNoEditor_ES_P.pak)** (o desde la pestaña *Releases*).
-2. Cópialo en la carpeta `Paks` del juego, **junto al pak grande** (no lo sustituyas):
+Es cuestión de un minuto:
+
+1. Descarga **[`VotV-WindowsNoEditor_ES_P.pak`](dist/VotV-WindowsNoEditor_ES_P.pak)** (o búscalo en la pestaña *Releases*).
+2. Cópialo en la carpeta `Paks` del juego, **junto al pak grande** (no lo sustituyas, tienen que convivir):
    ```
    WindowsNoEditor\VotV\Content\Paks\VotV-WindowsNoEditor_ES_P.pak
    ```
@@ -50,7 +61,7 @@ Borra `VotV-WindowsNoEditor_ES_P.pak` de la carpeta `Paks`. Ya está.
 
 - Probado en **Alpha 0.9.0 (build a090n)**.
 - Funciona junto a mods de UE4SS y LogicMods, porque solo sustituye el archivo de idioma.
-- En otras versiones del juego puede funcionar a medias: los textos nuevos o cambiados saldrán en inglés. Mira [Actualizar a una versión nueva](#-actualizar-a-una-versión-nueva-del-juego).
+- En otras versiones del juego puede funcionar a medias: los textos nuevos o cambiados saldrán en inglés. Mira [cómo actualizarlo](#-actualizar-a-una-versión-nueva-del-juego).
 
 ---
 
@@ -69,7 +80,7 @@ Textos en latín, la nota en alemán, el idioma alienígena, los textos corrupto
 
 ---
 
-## 🛠️ Para desarrolladores
+## 🛠️ Para quien quiera trastear
 
 ### Estructura
 
@@ -104,7 +115,7 @@ votv-castellano/
 ```
 
 - El primer nivel es el *namespace* de Unreal (`_` = namespace vacío).
-- La clave es el identificador del texto en el juego.
+- La clave es el identificador del texto dentro del juego.
 - `h` es el hash del texto **inglés** original. Sirve para detectar si el desarrollador ha cambiado ese texto en una versión nueva.
 - `es` es la traducción.
 
@@ -113,7 +124,7 @@ Al ir por clave y no por frase, una misma palabra inglesa puede tener traduccion
 ### Requisitos
 
 - **Python 3.8+** (sin dependencias externas).
-- **[FModel](https://fmodel.app/)**, para extraer el `Game.locres` inglés de tu juego. Este repositorio **no incluye archivos originales del juego**.
+- **[FModel](https://fmodel.app/)**, para extraer el `Game.locres` inglés de tu copia del juego. Este repositorio **no incluye archivos originales del juego**.
 
 ### Generar el mod
 
@@ -123,7 +134,7 @@ Al ir por clave y no por frase, una misma palabra inglesa puede tener traduccion
    ```bash
    python tools/build.py ruta/al/en/Game.locres
    ```
-3. El resultado se guarda en `dist/`. Si hay textos con problemas, se dejan en inglés y se listan en `dist/avisos.txt`.
+3. El resultado se guarda en `dist/`. Si algún texto da problemas, se deja en inglés y se apunta en `dist/avisos.txt`.
 
 ### 🔄 Actualizar a una versión nueva del juego
 
@@ -143,19 +154,20 @@ python tools/build.py ruta/al/en/Game.locres
 ### Cómo funciona por dentro
 
 - El juego guarda los textos en `Content/Localization/Game/<idioma>/Game.locres`, dentro del pak principal.
-- Unreal carga con **prioridad los paks cuyo nombre termina en `_P`**. Este mod es un pak pequeño (versión 8, sin compresión) con un único archivo: `VotV/Content/Localization/Game/es/Game.locres`, montado en `../../../`. El juego lo usa en lugar del suyo para el idioma `es`.
-- `build.py` parte de la tabla de claves del locres inglés, pone la traducción de cada clave y deduplica las cadenas. Cualquier texto que no pase `validar.py` se queda en inglés para no romper nada en el juego.
+- Unreal da **prioridad a los paks cuyo nombre acaba en `_P`**. Este mod es un pak pequeño (versión 8, sin compresión) con un único archivo: `VotV/Content/Localization/Game/es/Game.locres`, montado en `../../../`. El juego lo usa en lugar del suyo cuando el idioma es `es`.
+- `build.py` parte de la tabla de claves del locres inglés, mete la traducción de cada clave y deduplica las cadenas. Cualquier texto que no pase `validar.py` se queda en inglés para no romper nada en el juego.
 
 ---
 
 ## 🙏 Créditos
 
 - **_Voices of the Void_**: MrDrNose y su equipo. Todo el contenido del juego es suyo.
-- Parte de los textos parten de la **traducción al español de la comunidad** que ya venía en el juego, revisada y adaptada al castellano.
+- **Claude (Anthropic)**, con quien se ha hecho la traducción.
+- Parte de los textos parte de la **traducción al español de la comunidad** que ya venía en el juego, revisada y adaptada al castellano.
 - **[FModel](https://github.com/4sval/FModel)**, para extraer los archivos del juego.
 
 ## ⚖️ Aviso
 
-Traducción **no oficial** hecha por fans y sin ánimo de lucro. No tiene relación con los desarrolladores del juego ni está respaldada por ellos. No incluye archivos del juego: para usar este mod necesitas tu propia copia de _Voices of the Void_. Si los desarrolladores lo piden, se retirará.
+Traducción **no oficial**, hecha por un fan y sin ánimo de lucro, **realizada con ayuda de Claude (IA de Anthropic)**. No tiene relación con los desarrolladores del juego ni está respaldada por ellos. No incluye archivos del juego: para usar este mod necesitas tu propia copia de _Voices of the Void_. Si los desarrolladores lo piden, se retirará.
 
 Las herramientas de `tools/` se publican bajo licencia [MIT](LICENSE).
